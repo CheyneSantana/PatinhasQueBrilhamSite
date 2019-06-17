@@ -1,0 +1,24 @@
+.titulo {
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: 479px) {
+    font-size: 21px;
+  }
+}
+
+.div-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 500px;
+
+  @media screen and (max-width: 479px) {
+    width: 100%;
+  }
+}
+
+.div-container > * {
+  width: 100%;
+}

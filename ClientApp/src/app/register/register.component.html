@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row"><h1>Registro</h1></div>
+  <div class="row">
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput placeholder="Nome" [(ngModel)]="nome" required />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput placeholder="Sobrenome" [(ngModel)]="sobrenome" required />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+      <mat-form-field>
+        <input matInput [(ngModel)]="telRes" placeholder="Telefone Residencial" [imask]="{mask: '(00) 0000-0000'}" />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput [(ngModel)]="telCel" placeholder="Celular" [imask]="{mask: '(00) 00000-0000'}" />
+      </mat-form-field>
+    </div>
+  <div class="row">
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email" required />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" required [(ngModel)]="senha" required />
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+    <div class="row">
+      <div mat-dialog-content>
+        <mat-form-field>
+          <input matInput placeholder="Repita a senha" [type]="hide ? 'password' : 'text'" required [(ngModel)]="senhaValidar" required />
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+  
+  <div class="row">
+    <button [disabled]="loading" mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
+    <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </div>
+  <div class="row">
+    <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+  </div>
+</div>

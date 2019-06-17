@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row"><label class="titulo">Faça sua reserva no hotel mais fofo</label></div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <div class="div-container">
+        <mat-form-field>
+          <input matInput placeholder="Caso queira alterar ou cancelar uma reserva insira o ticket" [(ngModel)]="ticket" [imask]="{mask: '00000000'}" />
+        </mat-form-field>
+        <button mat-stroked-button color="accent" (click)="pesquisarTicket()">Pesquisar reserva</button>
+        <label *ngIf="isEdit">Estado da reserva: {{estado}}</label>
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerDe" [min]="minDate" placeholder="Escolha uma data - De: "
+                 (dateChange)="selectedFrom($event)" [(ngModel)]="fromDate" required />
+          <mat-datepicker-toggle matSuffix [for]="pickerDe"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerDe></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerAte" [min]="minDate" placeholder="Escolha uma data - Até: "
+                 (dateChange)="selectedTo($event)" [(ngModel)]="toDate" />
+          <mat-datepicker-toggle matSuffix [for]="pickerAte"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerAte></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nome do dono" [(ngModel)]="nomeDono" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nome do iti malia" [(ngModel)]="nomePet" [name]="nomePet" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Tipo do Pet. Ex: Cão, Gato, Passaro" [(ngModel)]="tipoPet" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Raça do seu pet" [(ngModel)]="raca" [name]="raca" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Idade do seu pet" [(ngModel)]="idadePet" [name]="idadePet" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Porte do pet - Grande, médio ou pequeno" [(ngModel)]="portePet" [name]="portePet" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="(13) 3212-3456" [imask]="{mask: '(00) 0000-0000'}" [(ngModel)]="residencial" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="(13) 98765-4321" [imask]="{mask: '(00) 00000-0000'}" [(ngModel)]="celular" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="seuemail@provedor.com" [(ngModel)]="email" required />
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Observações sobre seu pet. Ex: alergias, agressivo, etc." [(ngModel)]="comentario"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="reservar()" *ngIf="!isEdit">Enviar</button>
+        <button mat-raised-button color="accent" (click)="atualizarReserva()" *ngIf="isEdit">Atualizar Reserva</button>
+        <button mat-raised-button color="warn" (click)="cancelarReserva()" *ngIf="isEdit">Cancelar Reserva</button>
+        <button mat-raised-button (click)="limparCampos()">Limpar campos</button>
+      </div>
+    </div>
+  </div>
+</div>

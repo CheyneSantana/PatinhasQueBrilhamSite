@@ -1,0 +1,22 @@
+img {
+  width: 100%;
+}
+
+label {
+  margin: 0 auto;
+}
+
+.col-6, col-sm-2 {
+  margin: 0 auto;
+}
+
+mat-card {
+  min-height: 180px;
+  min-width: 180px;
+  max-height: 180px;
+  max-width: 180px;
+
+  @media screen and (max-width: 479px) {
+    margin-top: 2px;
+  }
+}

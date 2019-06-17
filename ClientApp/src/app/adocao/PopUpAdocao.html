@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <h1 mat-dialog-title>Formulário para Adoção</h1>
+  </div>
+  <!-- #region Adotante -->
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="nomeAdotante" placeholder="Insira seu nome" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerDtNascimento" placeholder="Data de Nascimento"
+            (dateChange)="selectedNascimento($event)" [(ngModel)]="dtNascimento" required />
+          <mat-datepicker-toggle matSuffix [for]="pickerDtNascimento"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerDtNascimento></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="rg" placeholder="RG" [imask]="{mask: '00.000.000-0'}" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="cpf" placeholder="CPF" [imask]="{mask: '000.000.000-00'}" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="cep" placeholder="Insira seu CEP" [imask]="{mask: '00000-000'}" />
+        </mat-form-field>
+        <button mat-button color="primary" (click)="buscarCep()">Buscar CEP</button>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="endereco" placeholder="Endereço residencial" disabled />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="numero" placeholder="Número" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="complemento" placeholder="Complemento" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="bairro" placeholder="Bairro" disabled />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="cidade" placeholder="Cidade" disabled />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="uf" placeholder="UF" disabled />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="profissao" placeholder="Profissão" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="telRes" placeholder="Telefone Residencial" [imask]="{mask: '(00) 0000-0000'}" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <input matInput [(ngModel)]="telCel" placeholder="Celular" [imask]="{mask: '(00) 00000-0000'}" />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <!-- #endregion Adotante -->
+  <div class="row">
+    <div class="col-12">
+      <p>
+        Muito importante ressaltar que até 01 mês após a adoção nos responsabilizamos em abrigar o animal,
+        após esteperíodo o adotante se responsabilizara em abrigar em sua casa e manter o animal em boas
+        condições etrabalharemos novamente na adoção até o animal conseguir um novo tutor.
+        <br />
+        Abandonar ou maltratar animais é crime! Pena: 3 meses a 1 ano de detenção e multa
+        (Artigo 32 e correlatos da Lei de Crimes Ambientais – n° 9.605/98)
+
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div mat-dialog-actions class="div-button">
+      <button mat-fab color="warn" (click)="cancelar()">Cancelar</button>
+      <button mat-fab color="primary" (click)="enviarSolicitacao()" cdkFocusInitial>Enviar</button>
+    </div>
+  </div>
+</div>

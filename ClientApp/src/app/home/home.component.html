@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <ngb-carousel >
+      <ng-template *ngFor="let capa of capas" ngbSlide>
+        <a routerLink="{{capa.link}}">
+          <img src="{{capa.path}}" alt="" />
+        </a>
+        <div class="carousel-caption">
+          <h3>{{capa.titulo}}</h3>
+          <p>{{capa.descricao}}</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="row">
+
+  </div>
+</div>

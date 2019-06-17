@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row"><label class="titulo">Compre na nossa loja e ajude nossos animais</label></div>
+  <hr />
+  <div class="row">
+    <div class="col-12 col-md-4" *ngFor="let produto of produtos">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{produto.nome}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-header src="{{produto.pathFoto}}" alt="Nome animal" />
+        <mat-card-content>
+          <p>
+            {{produto.detalhes}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button href="{{produto.linkFace}}">Compre aqui</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
