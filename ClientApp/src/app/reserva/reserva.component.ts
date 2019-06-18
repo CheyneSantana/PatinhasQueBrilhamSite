@@ -71,7 +71,7 @@ export class ReservaComponent implements OnInit {
       this.service.enviarReserva(this.reserva)
         .subscribe(
           data => { this.retornoReservaSucesso(data); this.patinhas.executeBar = false; },
-          error => { this.toastr.errorToastr(error, 'Erro: '); this.patinhas.executeBar = false; }
+          error => { this.toastr.errorToastr(error.error.message, 'Erro: '); this.patinhas.executeBar = false; }
         );
     }
     this.patinhas.executeBar = false;
@@ -186,7 +186,7 @@ export class ReservaComponent implements OnInit {
             this.makeReserva(data);
             this.patinhas.executeBar = false;
           },
-          error => { this.toastr.errorToastr(error.error.message, 'Erro: '); this.patinhas.executeBar = false;}
+          error => { this.toastr.errorToastr(error.error.message, 'Erro: '); this.patinhas.executeBar = false; }
         );
     }
   }
@@ -197,8 +197,9 @@ export class ReservaComponent implements OnInit {
     this.comentario = reserva.comentario;
     this.email = reserva.email;
     this.fromDate = new Date(reserva.fromDate);
-    if (!reserva.toDate.toString().includes('0001-01-01'))
+    if (!reserva.toDate.toString().includes('0001-01-01')) {
       this.toDate = new Date(reserva.toDate);
+    }
     this.nomeDono = reserva.nomeDono;
     this.nomePet = reserva.nomePet;
     this.raca = reserva.raca;
@@ -218,8 +219,12 @@ export class ReservaComponent implements OnInit {
         data => {
           this.service.atualizarReserva(this.reserva)
             .subscribe(
-              data => { this.toastr.successToastr('Reserva atualizada com sucesso'); this.limparCampos(); this.patinhas.executeBar = false; },
-              error => { this.toastr.errorToastr(error, 'Erro: '); this.patinhas.executeBar = false;}
+              data => {
+                this.toastr.successToastr('Reserva atualizada com sucesso');
+                this.limparCampos();
+                this.patinhas.executeBar = false;
+              },
+              error => { this.toastr.errorToastr(error, 'Erro: '); this.patinhas.executeBar = false; }
             );
         },
         error => { this.toastr.errorToastr(error, 'Erro: '); }

@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
@@ -36,7 +37,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { LojaComponent } from './loja/loja.component';
 import { PopUpAdocao } from './adocao/PopUpAdocao';
 import { PopUpDetalhes } from './adocao/PopUpDetalhes';
-import {PopUpAvisoAdocao} from './adocao/PopUpAvisoAdocao';
+import { PopUpAvisoAdocao } from './adocao/PopUpAvisoAdocao';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {PopUpAvisoAdocao} from './adocao/PopUpAvisoAdocao';
     MatCardModule,
     MatDialogModule,
     MatProgressBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [AdocaoComponent, PopUpAdocao, PopUpDetalhes, PopUpAvisoAdocao],
   providers: [MatDatepickerModule],

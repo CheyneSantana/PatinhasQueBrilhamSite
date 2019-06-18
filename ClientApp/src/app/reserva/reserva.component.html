@@ -16,7 +16,7 @@
           <mat-datepicker touchUi #pickerDe></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="pickerAte" [min]="minDate" placeholder="Escolha uma data - Até: "
+          <input matInput [matDatepicker]="pickerAte" [min]="fromDate" placeholder="Escolha uma data - Até: "
                  (dateChange)="selectedTo($event)" [(ngModel)]="toDate" />
           <mat-datepicker-toggle matSuffix [for]="pickerAte"></mat-datepicker-toggle>
           <mat-datepicker touchUi #pickerAte></mat-datepicker>

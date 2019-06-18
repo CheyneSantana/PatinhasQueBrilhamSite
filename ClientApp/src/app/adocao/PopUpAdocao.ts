@@ -30,6 +30,7 @@ export class PopUpAdocao implements OnInit {
   public telRes: string;
   public telCel: string;
   private formulario: FormularioDTO;
+  public execSpinner: boolean = false;
 
   constructor(private adocaoService: AdocaoService,
     private toastr: ToastrManager,
@@ -59,7 +60,7 @@ export class PopUpAdocao implements OnInit {
   }
 
   public enviarSolicitacao(): void {
-    this.patinhas.executeBar = true;
+    this.execSpinner = true;
     if (!this.validar()) {
       this.makeFormulario();
       this.adocaoService.enviarSolicitacao(this.formulario)
@@ -68,12 +69,15 @@ export class PopUpAdocao implements OnInit {
             this.toastr.successToastr('Solicitação enviada com sucesso');
             this.openAviso();
             this.cancelar();
-            this.patinhas.executeBar = false;
+            this.execSpinner = false;
           },
-          error => { this.toastr.errorToastr(error.error.message, 'Erro: '); this.patinhas.executeBar = false; }
+          error => {
+            this.toastr.errorToastr(error.error.message, 'Erro: ');
+            this.execSpinner = false;
+          }
         );
     } else {
-      this.patinhas.executeBar = false;
+      this.execSpinner = false;
     }
   }
 
@@ -158,7 +162,8 @@ export class PopUpAdocao implements OnInit {
           data => {
             this.retornoBuscarCep(data);
             this.patinhas.executeBar = false;
-          }
+          },
+          error => { this.toastr.errorToastr(error.error.message); }
         );
     } else {
       this.toastr.errorToastr('Por favor insira o CEP');
