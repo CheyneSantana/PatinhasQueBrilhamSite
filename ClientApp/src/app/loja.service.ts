@@ -1,3 +1,4 @@
+import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -6,9 +7,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LojaService {
-  private baseUrl = window.location.origin + "/api/Loja/";
+  private baseUrl = this.patinhas.getBaseUrl() + "/Loja/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   getProdutos() {
     return this.http.get(this.baseUrl + "GetProdutos").pipe(map(data => data));

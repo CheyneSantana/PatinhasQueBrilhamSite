@@ -1,3 +1,4 @@
+import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -7,9 +8,9 @@ import { FormularioDTO } from 'src/Models/FormularioDTO';
   providedIn: 'root'
 })
 export class AdocaoService {
-  private baseUrl = window.location.origin + "/api/Adocao/";
+  private baseUrl = this.patinhas.getBaseUrl() + "/Adocao/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   getAnimais() {
     return this.http.get(this.baseUrl + "getAnimaisAdocao").pipe(map(data => data));

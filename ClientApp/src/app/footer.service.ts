@@ -1,3 +1,4 @@
+import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -6,9 +7,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FooterService {
-  private baseUrl = window.location.origin + "/api/Footer/";
+  private baseUrl = this.patinhas.getBaseUrl() + "/Footer/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   getApoios() {
     return this.http.get(this.baseUrl + "getApoios").pipe(map(data => data));

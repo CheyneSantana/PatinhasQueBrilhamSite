@@ -29,4 +29,8 @@ export class PatinhasService {
   public logged(): boolean {
     return this.authenticationService.logged;
   }
+
+  public getBaseUrl(): string {
+    return this.authenticationService.baseUrl;
+  }
 }

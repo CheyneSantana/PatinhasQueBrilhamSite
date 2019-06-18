@@ -66,8 +66,8 @@ export class LoginComponent implements OnInit {
 
   public openDialog(): void {
     const diaogRef = this.dialog.open(RegisterComponent, {
-      width: 'auto',
-      height: 'auto'
+      width: '370px',
+        height: '600px'
     });
   }
 

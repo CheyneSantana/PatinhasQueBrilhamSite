@@ -1,3 +1,4 @@
+import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Reserva } from 'src/Models/Reserva';
@@ -7,9 +8,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ReservaService {
-  private baseUrl = window.location.origin + "/api/Reserva/";
+  private baseUrl = this.patinhas.getBaseUrl() + "/Reserva/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   enviarReserva(reserva: Reserva) {
     return this.http.post(this.baseUrl + "Reservar", reserva);

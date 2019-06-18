@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PatinhasService } from './patinhas.service';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpInterceptor } from '@angular/common/http';
 import { User } from 'src/Models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = window.location.hostname + "/api/Users/";
+  private baseUrl = this.patinhas.getBaseUrl() + "/Users/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   getAll() {
     return this.http.get<User[]>(this.baseUrl + "GetAll");

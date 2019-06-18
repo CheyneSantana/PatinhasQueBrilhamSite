@@ -1,3 +1,4 @@
+import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  private baseUrl = window.location.origin + "/api/Users/";
+  public baseUrl = "https://patinhasquebrilhamapi.azurewebsites.net/api";
   public logged: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -25,7 +26,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(this.baseUrl + "authenticate", { email, password })
+    return this.http.post<any>(this.baseUrl + "/Users/authenticate", { email, password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -36,7 +37,7 @@ export class AuthenticationService {
         return user;
       }));
   }
- 
+
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
@@ -45,6 +46,6 @@ export class AuthenticationService {
   }
 
   resetarSenha(user: User) {
-    return this.http.put(this.baseUrl + "ResetarSenha", user);
+    return this.http.put(this.baseUrl + "/Users/ResetarSenha", user);
   }
 }
