@@ -52,8 +52,9 @@ export class ReservaComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.patinhas.currentUserValue())
+    if (!this.patinhas.currentUserValue()) {
       this.router.navigate(['/']);
+    }
   }
 
   public selectedFrom(event: MatDatepickerInputEvent<Date>) {
@@ -64,14 +65,20 @@ export class ReservaComponent implements OnInit {
     this.toDate = new Date(event.value.getFullYear(), event.value.getMonth(), event.value.getDate());
   }
 
-  private reservar() {
-    this.patinhas.executeBar = true;
+  public reservar() {
     if (!this.validarDados()) {
+      this.patinhas.executeBar = true;
       this.montarReserva();
       this.service.enviarReserva(this.reserva)
         .subscribe(
-          data => { this.retornoReservaSucesso(data); this.patinhas.executeBar = false; },
-          error => { this.toastr.errorToastr(error.error.message, 'Erro: '); this.patinhas.executeBar = false; }
+          data => {
+            this.retornoReservaSucesso(data);
+            this.patinhas.executeBar = false;
+          },
+          error => {
+            this.toastr.errorToastr(error.error.message, 'Erro: ');
+            this.patinhas.executeBar = false;
+          }
         );
     }
     this.patinhas.executeBar = false;
@@ -186,7 +193,10 @@ export class ReservaComponent implements OnInit {
             this.makeReserva(data);
             this.patinhas.executeBar = false;
           },
-          error => { this.toastr.errorToastr(error.error.message, 'Erro: '); this.patinhas.executeBar = false; }
+          error => {
+            this.toastr.errorToastr(error.error.message, 'Erro: ');
+            this.patinhas.executeBar = false;
+          }
         );
     }
   }
@@ -238,7 +248,7 @@ export class ReservaComponent implements OnInit {
     this.service.cancelarReserva(this.reserva)
       .subscribe(
         data => { this.toastr.successToastr('Reserva cancelada com sucesso'); this.limparCampos(); },
-        error => { this.toastr.errorToastr(error); }
+        error => { this.toastr.errorToastr(error.error.message); }
       );
   }
 }
