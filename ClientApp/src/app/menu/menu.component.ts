@@ -33,23 +33,26 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.patinhas.currentUserValue()) {
+      this.authentication.logged = true;
+    }
   }
 
-  private openDialogLogin(): void {
+  public openDialogLogin(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: 'auto',
       height: 'auto'
     });
   }
 
-  private openDialogPerfil(): void {
+  public openDialogPerfil(): void {
     const dialogRef = this.dialog.open(PerfilComponent, {
       width: 'auto',
       height: 'auto'
     });
   }
 
-  private logout(): void {
+  public logout(): void {
     this.patinhas.logout();
   }
 }

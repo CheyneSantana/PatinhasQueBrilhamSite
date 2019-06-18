@@ -21,7 +21,7 @@ export class PopUpDetalhes implements OnInit {
 	constructor(private adocaoService: AdocaoService,
 		private toastr: ToastrManager,
 		public dialogRef: MatDialogRef<PopUpDetalhes>,
-		@Inject(MAT_DIALOG_DATA) public data: any) { }
+		@Inject(MAT_DIALOG_DATA) public data: AnimaisAdocao) { }
 
 	public fechar(): void {
 		this.dialogRef.close();

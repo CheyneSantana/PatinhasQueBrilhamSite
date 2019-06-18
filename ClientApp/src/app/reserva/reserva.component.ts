@@ -43,8 +43,10 @@ export class ReservaComponent implements OnInit {
   public estado: string;
   public idadePet: number;
   public portePet: string;
+  public executeBar: boolean = false;
 
-  constructor(private calendar: NgbCalendar,
+  constructor(
+    private calendar: NgbCalendar,
     private service: ReservaService,
     public toastr: ToastrManager,
     private router: Router,
@@ -67,17 +69,17 @@ export class ReservaComponent implements OnInit {
 
   public reservar() {
     if (!this.validarDados()) {
-      this.patinhas.executeBar = true;
+      this.executeBar = true;
       this.montarReserva();
       this.service.enviarReserva(this.reserva)
         .subscribe(
           data => {
             this.retornoReservaSucesso(data);
-            this.patinhas.executeBar = false;
+            this.executeBar = false;
           },
           error => {
             this.toastr.errorToastr(error.error.message, 'Erro: ');
-            this.patinhas.executeBar = false;
+            this.executeBar = false;
           }
         );
     }
@@ -100,6 +102,8 @@ export class ReservaComponent implements OnInit {
     this.raca = "";
     this.comentario = "";
     this.tipoPet = "";
+    this.portePet = "";
+    this.idadePet = 0;
   }
 
   private montarReserva() {
@@ -186,16 +190,16 @@ export class ReservaComponent implements OnInit {
       this.toastr.warningToastr('Por favor preencher o ticket');
     }
     else {
-      this.patinhas.executeBar = true;
+      this.executeBar = true;
       this.service.pesquisarTicket(this.ticket, this.patinhas.currentUserValue().id)
         .subscribe(
           data => {
             this.makeReserva(data);
-            this.patinhas.executeBar = false;
+            this.executeBar = false;
           },
           error => {
             this.toastr.errorToastr(error.error.message, 'Erro: ');
-            this.patinhas.executeBar = false;
+            this.executeBar = false;
           }
         );
     }
@@ -222,7 +226,7 @@ export class ReservaComponent implements OnInit {
   }
 
   private atualizarReserva() {
-    this.patinhas.executeBar = true;
+    this.executeBar = true;
     if (!this.validarDados()) {
       this.montarReserva();
       this.service.enviarEmailAtualizacao(this.reserva).subscribe(
@@ -232,22 +236,26 @@ export class ReservaComponent implements OnInit {
               data => {
                 this.toastr.successToastr('Reserva atualizada com sucesso');
                 this.limparCampos();
-                this.patinhas.executeBar = false;
+                this.executeBar = false;
               },
-              error => { this.toastr.errorToastr(error, 'Erro: '); this.patinhas.executeBar = false; }
+              error => { this.toastr.errorToastr(error, 'Erro: '); this.executeBar = false; }
             );
         },
         error => { this.toastr.errorToastr(error, 'Erro: '); }
       );
     }
-    this.patinhas.executeBar = false;
+    this.executeBar = false;
   }
 
   private cancelarReserva() {
     this.montarReserva();
     this.service.cancelarReserva(this.reserva)
       .subscribe(
-        data => { this.toastr.successToastr('Reserva cancelada com sucesso'); this.limparCampos(); },
+        data => {
+          this.toastr.successToastr('Reserva cancelada com sucesso');
+          this.limparCampos(); 
+          this.isEdit = false;
+        },
         error => { this.toastr.errorToastr(error.error.message); }
       );
   }

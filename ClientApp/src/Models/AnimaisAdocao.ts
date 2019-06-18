@@ -1,25 +1,24 @@
 export class AnimaisAdocao {
-  AnimaisAdocaoId: number;
-  NomeAntigo: string;
-  NomeAtual: string;
-  Especie: string;
-  Sexo: number;
-  Idade: number;
-  Adulto: number;
-  Raca: string;
-  CorPelagem: string;
-  Porte: number;
-  Castrado: number;
-  Vermifugado: number;
-  Raiva: number;
-  V10: number;
-  Quadrupla: number;
-  Dose: number;
-  Microchip: number;
-  RGA: number;
-  PathFoto: string;
-  detalhes: string;
-  Adotado: number;
+  animaisAdocaoId: number;
+  nomeAntigo: string;
+  nomeAtual: string;
+  especie: string;
+  sexo: number;
+  idade: number;
+  adulto: number;
+  raca: string;
+  corPelagem: string;
+  porte: number;
+  castrado: number;
+  vermifugado: number;
+  raiva: number;
+  v10: number;
+  quadrupla: number;
+  dose: number;
+  microchip: number;
+  rga: number;
+  pathFoto: string;
+  adotado: number;
 }
 
 export enum KdAtivo {
