@@ -12,7 +12,7 @@ import { PatinhasService } from '../patinhas.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  public appTitle = 'Patinhas que brilham';
+  public appTitle = 'Ong Patinhas que Brilham';
   public mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
