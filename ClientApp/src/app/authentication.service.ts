@@ -13,9 +13,10 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  public baseUrl = "https://patinhasquebrilhamapi.azurewebsites.net/api";
-  // public baseUrl = "https://localhost:5001/api";
+  // public baseUrl = "https://patinhasquebrilhamapi.azurewebsites.net/api";
+  public baseUrl = "https://localhost:5001/api";
   public logged: boolean = false;
+  public isAdmin: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -33,6 +34,7 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           this.logged = true;
+          this.isAdmin = user.isAdmin;
         }
 
         return user;
@@ -44,6 +46,7 @@ export class AuthenticationService {
     this.currentUserSubject.next(null);
     this.logged = false;
     this.router.navigate(['/']);
+    this.isAdmin = false;
   }
 
   resetarSenha(user: User) {

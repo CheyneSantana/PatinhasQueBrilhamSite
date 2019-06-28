@@ -7,4 +7,5 @@ export class User {
   telRes: string;
   token: string;
   email: string;
+  isAdmin: boolean;
 }

@@ -100,6 +100,7 @@ export class LoginComponent implements OnInit {
       sobrenome: '',
       id: 0,
       password: '',
+      isAdmin: false,
       token: ''
     };
   }

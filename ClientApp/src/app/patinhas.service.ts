@@ -33,4 +33,8 @@ export class PatinhasService {
   public getBaseUrl(): string {
     return this.authenticationService.baseUrl;
   }
+
+  public isAdmin(): boolean {
+    return this.authenticationService.isAdmin;
+  }
 }

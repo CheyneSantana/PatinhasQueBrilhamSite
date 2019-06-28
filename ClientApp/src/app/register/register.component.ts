@@ -117,7 +117,8 @@ export class RegisterComponent implements OnInit {
       telCel: this.telCel,
       id: 0,
       password: this.senha,
-      token: ''
+      token: '',
+      isAdmin: false
     }
   }
 

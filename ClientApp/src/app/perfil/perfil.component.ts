@@ -103,7 +103,8 @@ export class PerfilComponent implements OnInit {
           sobrenome: this.authencticationService.currentUserValue.sobrenome,
           id: this.authencticationService.currentUserValue.id,
           password: this.senhaAntiga,
-          token: this.authencticationService.currentUserValue.token
+          token: this.authencticationService.currentUserValue.token,
+          isAdmin: this.authencticationService.currentUserValue.isAdmin
         };
 
         this.userService.validarSenhaAntiga(user)
@@ -134,6 +135,7 @@ export class PerfilComponent implements OnInit {
       sobrenome: this.sobrenome,
       id: this.id,
       password: this.senhaNova,
+      isAdmin: this.patinhas.currentUserValue().isAdmin,
       token: this.token
     }
   }

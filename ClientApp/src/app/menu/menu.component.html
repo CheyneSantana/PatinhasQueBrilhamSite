@@ -2,8 +2,8 @@
   <mat-toolbar class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="app-name">{{appTitle}}</h1>
-    <button mat-fab color="accent" (click)="openDialogLogin()" class="login" *ngIf="!authentication.logged">Login</button>
-    <div class="login" *ngIf="authentication.logged">
+    <button mat-fab color="accent" (click)="openDialogLogin()" class="login" *ngIf="!patinhas.logged()">Login</button>
+    <div class="login" *ngIf="patinhas.logged()">
       <button mat-fab color="primary" (click)="openDialogPerfil()">Perfil</button>
       <button mat-fab color="warn" (click)="logout()">Logout</button>
     </div>
@@ -15,7 +15,8 @@
         <a mat-list-item routerLink="/" (click)="snav.toggle()"><mat-icon>home</mat-icon> Ínicio</a>
         <a mat-list-item routerLink="/doacao" (click)="snav.toggle()"><mat-icon>attach_money</mat-icon> Doação</a>
         <a mat-list-item routerLink="/adocao" (click)="snav.toggle()"><mat-icon>pets</mat-icon> Adotar</a>
-        <a mat-list-item routerLink="/reserva" (click)="snav.toggle()" *ngIf="authentication.logged"><mat-icon>hotel</mat-icon> Reserva Hotel</a>
+        <a mat-list-item routerLink="/reserva" (click)="snav.toggle()" *ngIf="patinhas.logged()"><mat-icon>hotel</mat-icon> Reserva Hotel</a>
+        <a mat-list-item routerLint="/" (click)="snav.toggle()" *ngIf="patinhas.isAdmin()">Teste Admin</a>
         <!--<a mat-list-item routerLink="/loja" (click)="snav.toggle()" *ngIf="patinhas.logged"><mat-icon>pets</mat-icon> Loja Cantinho das Patinhas</a>-->
         <a mat-list-item routerLink="/about" (click)="snav.toggle()"><mat-icon>person</mat-icon> Sobre</a>
       </mat-nav-list>
