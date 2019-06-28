@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrManager,
     public dialogRef: MatDialogRef<RegisterComponent>,
-  ) {  }
+  ) { }
 
   ngOnInit() {
   }
@@ -75,9 +75,19 @@ export class RegisterComponent implements OnInit {
     if (!this.email) {
       this.toastr.errorToastr('Insira seu email');
       hasErro = true;
+    } else {
+      if (!this.email.includes('@')) {
+        this.toastr.errorToastr('Email inválido');
+        hasErro = true;
+      } else {
+        if (!this.email.includes('.com')) {
+          this.toastr.errorToastr('Email inválido');
+          hasErro = true;
+        }
+      }
     }
 
-    if(!this.telCel) {
+    if (!this.telCel) {
       this.toastr.errorToastr('Insira seu celular');
       hasErro = true;
     }

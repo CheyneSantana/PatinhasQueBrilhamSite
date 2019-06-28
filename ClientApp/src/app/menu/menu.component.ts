@@ -30,6 +30,7 @@ export class MenuComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.logout();
   }
 
   ngOnInit() {
