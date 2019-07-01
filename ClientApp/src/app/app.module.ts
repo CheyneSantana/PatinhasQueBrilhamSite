@@ -38,6 +38,7 @@ import { LojaComponent } from './loja/loja.component';
 import { PopUpAdocao } from './adocao/PopUpAdocao';
 import { PopUpDetalhes } from './adocao/PopUpDetalhes';
 import { PopUpAvisoAdocao } from './adocao/PopUpAvisoAdocao';
+import { AdministracaoComponent } from './administracao/administracao.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PopUpAvisoAdocao } from './adocao/PopUpAvisoAdocao';
     LoginComponent,
     RegisterComponent,
     PerfilComponent,
-    LojaComponent
+    LojaComponent,
+    AdministracaoComponent
   ],
   imports: [
     HttpClientModule,
