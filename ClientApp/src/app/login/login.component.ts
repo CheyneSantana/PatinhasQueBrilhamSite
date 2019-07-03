@@ -35,17 +35,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.patinhas.executeBar = true;
     if (!this.validar()) {
       this.loading = true;
       this.patinhas.login(this.email, this.senha)
         .pipe(first())
         .subscribe(
-          data => { this.toastr.successToastr('Acessado com sucesso!'); this.closeDialog(); this.patinhas.executeBar = false; },
-          error => { this.toastr.errorToastr(error.error.message); this.loading = false; this.patinhas.executeBar = false; }
+          data => { this.toastr.successToastr('Acessado com sucesso!'); this.closeDialog(); },
+          error => { this.toastr.errorToastr(error.error.message); this.loading = false; }
         );
     }
-    this.patinhas.executeBar = false;
   }
 
   private validar(): boolean {

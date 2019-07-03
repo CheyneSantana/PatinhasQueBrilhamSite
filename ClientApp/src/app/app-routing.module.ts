@@ -1,3 +1,4 @@
+import { AdministracaoComponent } from './administracao/administracao.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -9,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { LojaComponent } from './loja/loja.component';
+import { GerenciarAdocaoComponent } from './administracao/gerenciar-adocao/gerenciar-adocao.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'loja', component: LojaComponent }
+  { path: 'loja', component: LojaComponent },
+  { path: 'administracao', component: AdministracaoComponent },
+  { path: 'gerenciarAdocao', component: GerenciarAdocaoComponent }
 ];
 
 @NgModule({
