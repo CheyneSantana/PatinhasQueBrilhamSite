@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <ngb-carousel >
+    <ngb-carousel>
       <ng-template *ngFor="let capa of capas" ngbSlide>
         <a routerLink="{{capa.link}}">
           <img src="{{capa.path}}" alt="" />
@@ -12,7 +12,18 @@
       </ng-template>
     </ngb-carousel>
   </div>
+  <hr />
   <div class="row">
-
+    <h2>Membros da Ong</h2>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4" *ngFor="let membro of membros">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{membro.nome}}</mat-card-title>
+        </mat-card-header>
+        <img class="imgMembros" mat-card-header src="{{membro.pathFoto}}" alt="{{membro.nome}}}" />
+      </mat-card>
+    </div>
   </div>
 </div>

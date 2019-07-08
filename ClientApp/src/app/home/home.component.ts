@@ -4,6 +4,11 @@ import { HomeService } from '../home.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
+export class Membro {
+  nome: string;
+  pathFoto: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,8 +17,13 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
   public capas: Capa[] = [];
+  public membros: Membro[] = [];
+  private angela: Membro;
+  private vanessa: Membro;
+  private marido: Membro;
 
-  constructor(private homeService: HomeService,
+  constructor(
+    private homeService: HomeService,
     private toastr: ToastrManager,
     config: NgbCarouselConfig) {
     config.interval = 3000;
@@ -23,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getCapas();
+    this.setMembros();
   }
 
   private getCapas(): void {
@@ -37,4 +48,13 @@ export class HomeComponent implements OnInit {
     this.capas = capas;
   }
 
+  private setMembros() {
+    this.angela = { nome: 'Angela', pathFoto: '../../assets/img/membros/angela.jpg' };
+    this.vanessa = { nome: 'Vanessa', pathFoto: '../../assets/img/membros/vanessa.jpg' };
+    this.marido = { nome: 'Marido', pathFoto: '../../assets/img/membros/marido.jpg' };
+
+    this.membros.push(this.angela);
+    this.membros.push(this.vanessa);
+    this.membros.push(this.marido);
+  }
 }
