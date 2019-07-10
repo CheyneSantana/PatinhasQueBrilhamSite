@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   private setMembros() {
     this.angela = { nome: 'Angela', pathFoto: '../../assets/img/membros/angela.jpg' };
     this.vanessa = { nome: 'Vanessa', pathFoto: '../../assets/img/membros/vanessa.jpg' };
-    this.marido = { nome: 'Marido', pathFoto: '../../assets/img/membros/marido.jpg' };
+    this.marido = { nome: 'Adilson', pathFoto: '../../assets/img/membros/marido.jpg' };
 
     this.membros.push(this.angela);
     this.membros.push(this.vanessa);
