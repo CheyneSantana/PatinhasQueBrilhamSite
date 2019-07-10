@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  // public baseUrl = "https://patinhasquebrilhamapi.azurewebsites.net/api";
-  public baseUrl = "https://localhost:5001/api";
+  public baseUrl = "https://patinhasquebrilhamapi.azurewebsites.net/api";
+  // public baseUrl = "https://localhost:5001/api";
   public logged: boolean = false;
   public isAdmin: boolean = false;
 
