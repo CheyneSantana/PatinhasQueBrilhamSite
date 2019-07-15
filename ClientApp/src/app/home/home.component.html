@@ -3,7 +3,7 @@
     <ngb-carousel>
       <ng-template *ngFor="let capa of capas" ngbSlide>
         <a routerLink="{{capa.link}}">
-          <img src="{{capa.path}}" alt="" />
+          <img class="imgCapa" src="{{capa.path}}" alt="" />
         </a>
         <div class="carousel-caption">
           <h3>{{capa.titulo}}</h3>
@@ -22,7 +22,7 @@
         <mat-card-header>
           <mat-card-title>{{membro.nome}}</mat-card-title>
         </mat-card-header>
-        <img class="imgMembros" mat-card-header src="{{membro.pathFoto}}" alt="{{membro.nome}}}" />
+        <img src="{{membro.pathFoto}}" alt="{{membro.nome}}}" class="imgMembro"/>
       </mat-card>
     </div>
   </div>
