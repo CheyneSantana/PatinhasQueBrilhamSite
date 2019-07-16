@@ -3,8 +3,6 @@ import { Apoio } from '../../Models/Apoio';
 import { FooterService } from '../footer.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
-
-
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',

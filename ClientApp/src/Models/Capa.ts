@@ -1,8 +1,7 @@
 export class Capa {
   capaId: number;
   path: string;
-  titulo: string;
-  descricao: string;
+  link: string;
   ativo: number;
 }
 

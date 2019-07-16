@@ -7,11 +7,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FooterService {
-  private baseUrl = this.patinhas.getBaseUrl() + "/Footer/";
+  private baseUrl = this.patinhas.getBaseUrl() + '/Footer/';
 
   constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   getApoios() {
-    return this.http.get(this.baseUrl + "getApoios").pipe(map(data => data));
+    return this.http.get(this.baseUrl + 'getApoios').pipe(map(data => data));
   }
 }

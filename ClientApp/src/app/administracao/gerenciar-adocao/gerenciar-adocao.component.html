@@ -3,6 +3,12 @@
       <a routerLink="/administracao" ><mat-icon>arrow_left_arial</mat-icon> Voltar</a>
   </div>
   <div class="row">
+    <mat-form-field>
+      <input matInput placeholder="Pesquisar animais" ([(ngModel)]="nomeAnimal") />
+      <button mat-button (click)="pesquisar()">Pesquisar</button>
+    </mat-form-field>
+  </div>
+  <div class="row">
       <div class="col-12 col-md-4" *ngFor="let animal of animais">
           <mat-card>
             <mat-card-header>
@@ -10,17 +16,10 @@
               <mat-card-subtitle>{{animal.raca}}</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-header src="{{animal.pathFoto}}" alt="{{animal.nomeAtual}}}" />
-            <mat-card-content>
-              <mat-list role="list">
-                <mat-list-item role="listitem">Sexo: {{KdSexo[animal.sexo]}}</mat-list-item>
-                <mat-list-item role="listitem">Idade: {{animal.idade}}</mat-list-item>
-                <mat-list-item role="listitem">Castrado: {{KdAtivo[animal.castrado]}}</mat-list-item>
-              </mat-list>
-            </mat-card-content>
             <mat-card-actions>
-              <button mat-button (click)="openFormulario(animal)">Adotar</button>
-              <button mat-button (click)="openDetalhes(animal)">Detalhes</button>
-              <button mat-button color="accent">Compartilhar</button>
+              <button mat-button (click)="openInteressados(animal)">Adotar</button>
+              <button mat-button (click)="openEditarAnimal(animal)">Detalhes</button>
+              <button mat-button (click)="excluir(animal)">Excluir</button>
             </mat-card-actions>
           </mat-card>
         </div>

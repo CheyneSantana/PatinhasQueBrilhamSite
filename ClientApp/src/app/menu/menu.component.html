@@ -17,7 +17,7 @@
         <a mat-list-item routerLink="/adocao" (click)="snav.toggle()"><mat-icon>pets</mat-icon> Adotar</a>
         <a mat-list-item routerLink="/reserva" (click)="snav.toggle()" *ngIf="patinhas.logged()"><mat-icon>hotel</mat-icon> Reserva Hotel</a>
         <a mat-list-item routerLink="/administracao" (click)="snav.toggle()" ><mat-icon>settings</mat-icon>Administração Site</a>
-        <!--<a mat-list-item routerLink="/loja" (click)="snav.toggle()" *ngIf="patinhas.isAdmin()" *ngIf="patinhas.logged"><mat-icon>pets</mat-icon> Loja Cantinho das Patinhas</a>-->
+        <!--<a mat-list-item routerLink="/loja" (click)="snav.toggle()" *ngIf="patinhas.logged()"><mat-icon>pets</mat-icon> Loja Cantinho das Patinhas</a>-->
         <a mat-list-item routerLink="/about" (click)="snav.toggle()"><mat-icon>person</mat-icon> Sobre</a>
       </mat-nav-list>
     </mat-sidenav>
