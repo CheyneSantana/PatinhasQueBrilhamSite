@@ -7,11 +7,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LojaService {
-  private baseUrl = this.patinhas.getBaseUrl() + "/Loja/";
+  private baseUrl = this.patinhas.getBaseUrl() + '/Loja/';
 
   constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   getProdutos() {
-    return this.http.get(this.baseUrl + "GetProdutos").pipe(map(data => data));
+    return this.http.get(this.baseUrl + 'GetProdutos').pipe(map(data => data));
   }
 }

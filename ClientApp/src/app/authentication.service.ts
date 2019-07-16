@@ -14,9 +14,9 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   // public baseUrl = "https://patinhasquebrilhamapi.azurewebsites.net/api";
-  public baseUrl = "https://localhost:5001/api";
-  public logged: boolean = false;
-  public isAdmin: boolean = false;
+  public baseUrl = 'https://localhost:5001/api';
+  public logged = false;
+  public isAdmin = false;
 
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(this.baseUrl + "/Users/authenticate", { email, password })
+    return this.http.post<any>(this.baseUrl + '/Users/authenticate', { email, password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -50,6 +50,6 @@ export class AuthenticationService {
   }
 
   resetarSenha(user: User) {
-    return this.http.put(this.baseUrl + "/Users/ResetarSenha", user);
+    return this.http.put(this.baseUrl + '/Users/ResetarSenha', user);
   }
 }

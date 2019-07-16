@@ -6,7 +6,7 @@ import { User } from '../Models/User';
   providedIn: 'root'
 })
 export class PatinhasService {
-  public executeBar: boolean = false;
+  public executeBar = false;
 
   constructor(public authenticationService: AuthenticationService) { }
 
@@ -15,7 +15,7 @@ export class PatinhasService {
   }
 
   public login(email: string, senha: string) {
-    return this.authenticationService.login(email, senha)
+    return this.authenticationService.login(email, senha);
   }
 
   public resetarSenha(user: User) {

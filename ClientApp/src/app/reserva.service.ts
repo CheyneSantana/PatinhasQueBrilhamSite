@@ -8,31 +8,31 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ReservaService {
-  private baseUrl = this.patinhas.getBaseUrl() + "/Reserva/";
+  private baseUrl = this.patinhas.getBaseUrl() + '/Reserva/';
 
   constructor(private http: HttpClient, private patinhas: PatinhasService) { }
 
   enviarReserva(reserva: Reserva) {
-    return this.http.post(this.baseUrl + "Reservar", reserva);
+    return this.http.post(this.baseUrl + 'Reservar', reserva);
   }
 
   pesquisarTicket(ticket: number, userId: number) {
     const params = new HttpParams()
-      .set("ticket", ticket.toString())
-      .set("userId", userId.toString());
+      .set('ticket', ticket.toString())
+      .set('userId', userId.toString());
 
-    return this.http.get(this.baseUrl + "PesquisarReserva", { params }).pipe(map(data => data));
+    return this.http.get(this.baseUrl + 'PesquisarReserva', { params }).pipe(map(data => data));
   }
 
   atualizarReserva(reserva: Reserva) {
-    return this.http.post(this.baseUrl + "AtualizarReserva", reserva);
+    return this.http.post(this.baseUrl + 'AtualizarReserva', reserva);
   }
 
   cancelarReserva(reserva: Reserva) {
-    return this.http.post(this.baseUrl + "CancelarReserva", reserva);
+    return this.http.post(this.baseUrl + 'CancelarReserva', reserva);
   }
 
   enviarEmailAtualizacao(reserva: Reserva) {
-    return this.http.post(this.baseUrl + "EnviarEmailAtualizacaoReserva", reserva);
+    return this.http.post(this.baseUrl + 'EnviarEmailAtualizacaoReserva', reserva);
   }
 }
