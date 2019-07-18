@@ -22,10 +22,12 @@ export class AdocaoComponent implements OnInit {
   public KdAdulto = KdAdulto;
   public KdSexo = KdSexo;
 
-  constructor(private service: AdocaoService,
+  constructor(
+    private service: AdocaoService,
     private toastr: ToastrManager,
     public dialog: MatDialog,
-    private patinhas: PatinhasService) { }
+    private patinhas: PatinhasService
+  ) { }
 
   ngOnInit() {
     this.getAnimais();

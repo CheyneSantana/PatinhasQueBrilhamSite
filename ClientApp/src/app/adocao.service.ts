@@ -22,9 +22,9 @@ export class AdocaoService {
 
   getNomeAnimal(nomeAnimal: string) {
     const params = new HttpParams()
-      .set('nomeAnimal', nomeAnimal);
+      .set('NomeAtual', nomeAnimal);
 
-    return this.http.get(this.baseUrl + 'getNomeAnimal/', { params }).pipe(data => data);
+    return this.http.get(this.baseUrl + 'getNomeAnimal', { params }).pipe(data => data);
   }
 
   enviarSolicitacao(formulario: FormularioDTO) {

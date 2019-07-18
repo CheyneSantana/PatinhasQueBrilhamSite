@@ -1,3 +1,7 @@
+import { MatDialog } from '@angular/material';
+import { PopupExcluirAnimalComponent } from './popup-excluir-animal/popup-excluir-animal.component';
+import { PopupEditarAnimalComponent } from './popup-editar-animal/popup-editar-animal.component';
+import { PopupInteressadosComponent } from './popup-interessados/popup-interessados.component';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AdocaoService } from './../../adocao.service';
 import { AnimaisAdocao } from 'src/Models/AnimaisAdocao';
@@ -9,12 +13,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gerenciar-adocao.component.scss']
 })
 export class GerenciarAdocaoComponent implements OnInit {
-  animais: AnimaisAdocao[];
-  nomeAnimal: string;
+  public animais: AnimaisAdocao[];
+  public nomeAnimal: string;
 
   constructor(
     private adocaoService: AdocaoService,
-    private toastr: ToastrManager
+    private toastr: ToastrManager,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -33,7 +38,7 @@ export class GerenciarAdocaoComponent implements OnInit {
     this.animais = animais;
   }
 
-  pesquisar(): void {
+  public pesquisar(): void {
     this.adocaoService.getNomeAnimal(this.nomeAnimal)
       .subscribe(
         data => { this.returnGetAnimais(data); },
@@ -41,15 +46,27 @@ export class GerenciarAdocaoComponent implements OnInit {
       );
   }
 
-  openInteressados(animal: any): void {
-
+  public openInteressados(animal: AnimaisAdocao): void {
+    const dialogRef = this.dialog.open(PopupInteressadosComponent, {
+      width: '370px',
+      height: '600px',
+      data: animal
+    });
   }
 
-  openEditarAnimal(animal: any): void {
-
+  public openEditarAnimal(animal: AnimaisAdocao): void {
+    const dialogRef = this.dialog.open(PopupEditarAnimalComponent, {
+      width: '370px',
+      height: '600px',
+      data: animal
+    });
   }
 
-  excluir(animal: any): void {
-
+  public excluir(animal: AnimaisAdocao): void {
+    const dialogRef = this.dialog.open(PopupExcluirAnimalComponent, {
+      width: '370px',
+      height: '600px',
+      data: animal
+    });
   }
 }
