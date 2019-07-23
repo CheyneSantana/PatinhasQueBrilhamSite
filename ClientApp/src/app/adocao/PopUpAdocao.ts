@@ -32,7 +32,8 @@ export class PopUpAdocao implements OnInit {
   private formulario: FormularioDTO;
   public execSpinner: boolean = false;
 
-  constructor(private adocaoService: AdocaoService,
+  constructor(
+    private adocaoService: AdocaoService,
     private toastr: ToastrManager,
     public dialogRef: MatDialogRef<PopUpAdocao>,
     public dialog: MatDialog,

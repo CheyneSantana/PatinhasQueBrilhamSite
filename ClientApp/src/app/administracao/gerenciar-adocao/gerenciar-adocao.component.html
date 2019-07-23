@@ -1,27 +1,31 @@
 <div class="container">
   <div class="row">
-      <a routerLink="/administracao" ><mat-icon>arrow_left_arial</mat-icon> Voltar</a>
+    <a routerLink="/administracao">
+      <mat-icon>arrow_left_arial</mat-icon> Voltar
+    </a>
   </div>
   <div class="row">
-    <mat-form-field>
-      <input matInput placeholder="Pesquisar animais" [(ngModel)]="nomeAnimal" />
-    </mat-form-field>
-    <button mat-fab (click)="pesquisar()">Pesquisar</button>
+    <div class="col-4">
+      <mat-form-field>
+        <input matInput placeholder="Pesquisar animais" [(ngModel)]="nomeAnimal" />
+      </mat-form-field>
+      <button mat-button color="primary" (click)="pesquisar()">Pesquisar</button>
+    </div>
   </div>
   <div class="row">
-      <div class="col-12 col-md-4" *ngFor="let animal of animais">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{animal.nomeAtual}}</mat-card-title>
-              <mat-card-subtitle>{{animal.raca}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-header src="{{animal.pathFoto}}" alt="{{animal.nomeAtual}}}" />
-            <mat-card-actions>
-              <button mat-button (click)="openInteressados(animal)">Interessados</button>
-              <button mat-button (click)="openEditarAnimal(animal)">Editar</button>
-              <button mat-button (click)="excluir(animal)">Excluir</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
+    <div class="col-12 col-md-4" *ngFor="let animal of animais">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{animal.nomeAtual}}</mat-card-title>
+          <mat-card-subtitle>{{animal.raca}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-header src="{{animal.pathFoto}}" alt="{{animal.nomeAtual}}}" />
+        <mat-card-actions>
+          <button mat-button (click)="openInteressados(animal)">Interessados</button>
+          <button mat-button (click)="openEditarAnimal(animal)">Editar</button>
+          <button mat-button (click)="excluir(animal)">Excluir</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>

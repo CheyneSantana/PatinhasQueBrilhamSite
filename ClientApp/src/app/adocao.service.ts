@@ -1,3 +1,4 @@
+import { AnimaisAdocao } from 'src/Models/AnimaisAdocao';
 import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -40,5 +41,12 @@ export class AdocaoService {
 
   getIntermediador() {
     return this.http.get(this.baseUrl + 'getIntermediador');
+  }
+
+  excluirAnimal(id: string) {
+    const params = new HttpParams()
+      .set('AnimaisAdocaoId', id);
+
+    return this.http.delete(this.baseUrl + 'DeletarAnimal', { params }).pipe(map(data => data));
   }
 }

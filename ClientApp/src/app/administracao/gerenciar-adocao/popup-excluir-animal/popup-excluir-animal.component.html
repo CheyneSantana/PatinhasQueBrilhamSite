@@ -1,3 +1,11 @@
-<p>
-  popup-excluir-animal works!
-</p>
+<div class="container">
+  <div class="row">
+    <p>
+      Tem certeza que deseja excluir {{animal.NomeAtual}}?
+    </p>
+  </div>
+  <div class="row">
+    <button mat-fab color="accent" (click)="confirmar()">Excluir</button>
+    <button mat-fab color="warn" (click)="fechar()">Cancelar</button>
+  </div>
+</div>

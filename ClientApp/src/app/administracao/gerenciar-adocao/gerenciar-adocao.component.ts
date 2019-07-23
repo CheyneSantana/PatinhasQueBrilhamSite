@@ -60,13 +60,20 @@ export class GerenciarAdocaoComponent implements OnInit {
       height: '600px',
       data: animal
     });
+    this.atualizarPagina();
   }
 
   public excluir(animal: AnimaisAdocao): void {
     const dialogRef = this.dialog.open(PopupExcluirAnimalComponent, {
-      width: '370px',
-      height: '600px',
+      width: 'auto',
+      height: 'auto',
       data: animal
     });
+    this.atualizarPagina();
+  }
+
+  private atualizarPagina(): void {
+    this.animais = [];
+    this.getAnimaisAdocao();
   }
 }
