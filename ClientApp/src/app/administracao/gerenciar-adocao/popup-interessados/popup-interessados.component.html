@@ -1,3 +1,19 @@
-<p>
-  popup-interessados works!
-</p>
+<div class="container">
+  <div class="row">
+    <button mat-button (click)="fechar()">Fechar</button>
+  </div>
+  <div class="row">
+    <mat-list>
+      <mat-list-item *ngFor="let adotante of adotantes">
+        <h3 matLine>{{adotante.nome}}</h3>
+        <p matLine>Estado solicitação: {{KdEstado[adotante.estado]}}</p>
+        <p matLine>
+          <button mat-fab color="primary" (click)="confirmarAdocao(adotante)">Confirmar</button>
+          <button mat-fab color="accent" (click)="detalhes(adotante)">Detalhes Adotante</button>
+          <button mat-fab color="warn" (click)="cancelar(adotante)">Cancelar solicitação</button>
+        </p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+</div>

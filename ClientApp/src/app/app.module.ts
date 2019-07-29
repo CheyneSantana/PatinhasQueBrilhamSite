@@ -43,6 +43,7 @@ import { GerenciarAdocaoComponent } from './administracao/gerenciar-adocao/geren
 import { PopupInteressadosComponent } from './administracao/gerenciar-adocao/popup-interessados/popup-interessados.component';
 import { PopupEditarAnimalComponent } from './administracao/gerenciar-adocao/popup-editar-animal/popup-editar-animal.component';
 import { PopupExcluirAnimalComponent } from './administracao/gerenciar-adocao/popup-excluir-animal/popup-excluir-animal.component';
+import { PopupDetalhesComponent } from './administracao/gerenciar-adocao/popup-interessados/popup-detalhes/popup-detalhes.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PopupExcluirAnimalComponent } from './administracao/gerenciar-adocao/po
     GerenciarAdocaoComponent,
     PopupInteressadosComponent,
     PopupEditarAnimalComponent,
-    PopupExcluirAnimalComponent
+    PopupExcluirAnimalComponent,
+    PopupDetalhesComponent
   ],
   imports: [
     HttpClientModule,
@@ -101,7 +103,8 @@ import { PopupExcluirAnimalComponent } from './administracao/gerenciar-adocao/po
     GerenciarAdocaoComponent,
     PopupInteressadosComponent,
     PopupEditarAnimalComponent,
-    PopupExcluirAnimalComponent
+    PopupExcluirAnimalComponent,
+    PopupDetalhesComponent
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

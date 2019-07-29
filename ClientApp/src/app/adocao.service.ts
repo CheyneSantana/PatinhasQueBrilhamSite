@@ -1,3 +1,4 @@
+import { AdotanteDTO } from 'src/Models/AdotanteDTO';
 import { AnimaisAdocao } from 'src/Models/AnimaisAdocao';
 import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
@@ -52,5 +53,20 @@ export class AdocaoService {
 
   atualizarAnimal(animal: AnimaisAdocao) {
     return this.http.put(this.baseUrl + 'AtualizarAnimal/', animal);
+  }
+
+  getAdotantesAnimal(animal: AnimaisAdocao) {
+    const params = new HttpParams()
+      .set('AnimaisAdocaoId', animal.animaisAdocaoId.toString());
+
+    return this.http.get(this.baseUrl + 'GetAdotantesAnimal/', { params }).pipe(map(data => data));
+  }
+
+  confirmarAdocao(adotante: AdotanteDTO) {
+    return this.http.put(this.baseUrl + 'ConfirmarAdocao/', adotante);
+  }
+
+  cancelarSolicitacao(adotante: AdotanteDTO) {
+    return this.http.put(this.baseUrl + 'CancelarSolicitacao/', adotante);
   }
 }

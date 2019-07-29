@@ -10,7 +10,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   styleUrls: ['./popup-excluir-animal.component.scss']
 })
 export class PopupExcluirAnimalComponent implements OnInit {
-  public animal: AnimaisAdocao;
+  animal: AnimaisAdocao;
 
   constructor(
     private adocaoService: AdocaoService,

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <button mat-button (click)="fechar()">Fechar</button>
+  </div>
+  <div class="row">
+    <mat-list>
+      <mat-list-item>
+        <h3>{{adotante.nome}}</h3>
+        <p matLine>Data de Nascimento: {{adotante.dtNascimento}}</p>
+        <p matLine>RG: {{adotante.rg}}</p>
+        <p matLine>CPF: {{adotante.cpf}}</p>
+        <p matLine>CEP: {{adotante.cep}}</p>
+        <p matLine>Endereço: {{adotante.endereco}}</p>
+        <p matLine>Número: {{adotante.nroEndereco}}</p>
+        <p matLine>Complemento: {{adotante.complemento}}</p>
+        <p matLine>Bairro: {{adotante.bairro}}</p>
+        <p matLine>Cidade: {{adotante.cidade}}</p>
+        <p matLine>Estado: {{adotante.uf}}</p>
+        <p matLine>Profissão: {{adotante.profissao}}</p>
+        <p matLine>Telefones:</p>
+        <p matLine>{{adotante.telRes}}</p>
+        <p matLine>{{adotante.telCel}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
