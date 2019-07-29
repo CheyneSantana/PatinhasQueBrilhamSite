@@ -41,10 +41,11 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authencticationService.currentUserValue)
+    if (this.authencticationService.currentUserValue) {
       this.makeTela();
-    else
+    } else {
       this.closeDialog();
+    }
   }
 
   public atualizar(): void {

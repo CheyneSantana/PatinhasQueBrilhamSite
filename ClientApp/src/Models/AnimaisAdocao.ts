@@ -18,7 +18,7 @@ export class AnimaisAdocao {
   microchip: number;
   rga: number;
   pathFoto: string;
-  adotado: number;
+  ativo: number;
 }
 
 export enum KdAtivo {

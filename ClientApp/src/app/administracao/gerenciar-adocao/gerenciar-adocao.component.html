@@ -5,11 +5,12 @@
     </a>
   </div>
   <div class="row">
-    <div class="col-4">
+    <div class="col-6">
       <mat-form-field>
         <input matInput placeholder="Pesquisar animais" [(ngModel)]="nomeAnimal" />
       </mat-form-field>
       <button mat-button color="primary" (click)="pesquisar()">Pesquisar</button>
+      <button mat-button color="primary" (click)="limparPesquisa()">Limpar pesquisa</button>
     </div>
   </div>
   <div class="row">
@@ -23,6 +24,8 @@
         <mat-card-actions>
           <button mat-button (click)="openInteressados(animal)">Interessados</button>
           <button mat-button (click)="openEditarAnimal(animal)">Editar</button>
+          <button mat-button (click)="desativar(animal)" *ngIf="animal.ativo === 1">Desativar</button>
+          <button mat-button (click)="ativar(animal)" *ngIf="animal.ativo === 0">Ativar</button>
           <button mat-button (click)="excluir(animal)">Excluir</button>
         </mat-card-actions>
       </mat-card>

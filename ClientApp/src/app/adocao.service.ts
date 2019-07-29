@@ -1,7 +1,7 @@
 import { AnimaisAdocao } from 'src/Models/AnimaisAdocao';
 import { PatinhasService } from './patinhas.service';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FormularioDTO } from 'src/Models/FormularioDTO';
 
@@ -48,5 +48,9 @@ export class AdocaoService {
       .set('AnimaisAdocaoId', id);
 
     return this.http.delete(this.baseUrl + 'DeletarAnimal', { params }).pipe(map(data => data));
+  }
+
+  atualizarAnimal(animal: AnimaisAdocao) {
+    return this.http.put(this.baseUrl + 'AtualizarAnimal/', animal);
   }
 }

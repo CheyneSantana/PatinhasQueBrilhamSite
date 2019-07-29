@@ -1,10 +1,11 @@
+import { PatinhasService } from './../../patinhas.service';
 import { MatDialog } from '@angular/material';
 import { PopupExcluirAnimalComponent } from './popup-excluir-animal/popup-excluir-animal.component';
 import { PopupEditarAnimalComponent } from './popup-editar-animal/popup-editar-animal.component';
 import { PopupInteressadosComponent } from './popup-interessados/popup-interessados.component';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AdocaoService } from './../../adocao.service';
-import { AnimaisAdocao } from 'src/Models/AnimaisAdocao';
+import { AnimaisAdocao, KdAtivo } from 'src/Models/AnimaisAdocao';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,11 +16,13 @@ import { Component, OnInit } from '@angular/core';
 export class GerenciarAdocaoComponent implements OnInit {
   public animais: AnimaisAdocao[];
   public nomeAnimal: string;
+  private KdAtivo = KdAtivo;
 
   constructor(
     private adocaoService: AdocaoService,
     private toastr: ToastrManager,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public patinhasService: PatinhasService
   ) { }
 
   ngOnInit() {
@@ -42,8 +45,19 @@ export class GerenciarAdocaoComponent implements OnInit {
     this.adocaoService.getNomeAnimal(this.nomeAnimal)
       .subscribe(
         data => { this.returnGetAnimais(data); },
-        error => { this.toastr.errorToastr(error.error.message); }
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+        }
       );
+  }
+
+  limparPesquisa(): void {
+    this.nomeAnimal = '';
+    this.getAnimaisAdocao();
   }
 
   public openInteressados(animal: AnimaisAdocao): void {
@@ -75,5 +89,49 @@ export class GerenciarAdocaoComponent implements OnInit {
   private atualizarPagina(): void {
     this.animais = [];
     this.getAnimaisAdocao();
+  }
+
+  public desativar(animal: AnimaisAdocao): void {
+    this.patinhasService.executeBar = true;
+    animal.ativo = this.KdAtivo.Não;
+    this.adocaoService.atualizarAnimal(animal).
+      subscribe(
+        data => {
+          this.toastr.successToastr('Animal removido da lista de adoção com sucesso!');
+          this.atualizarPagina();
+          this.patinhasService.executeBar = false;
+        },
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+          animal.ativo = this.KdAtivo.Sim;
+          this.patinhasService.executeBar = false;
+        }
+      );
+  }
+
+  public ativar(animal: AnimaisAdocao): void {
+    this.patinhasService.executeBar = true;
+    animal.ativo = this.KdAtivo.Sim;
+    this.adocaoService.atualizarAnimal(animal).
+      subscribe(
+        data => {
+          this.toastr.successToastr('Animal adicionado na lista de adoção com sucesso!');
+          this.atualizarPagina();
+          this.patinhasService.executeBar = false;
+        },
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+          animal.ativo = this.KdAtivo.Não;
+          this.patinhasService.executeBar = false;
+        }
+      );
   }
 }
