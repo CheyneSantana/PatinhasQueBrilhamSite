@@ -1,10 +1,12 @@
-import { AnimaisAdocao } from './../../../../Models/AnimaisAdocao';
+import { GerenciarAdocaoComponent } from './../gerenciar-adocao.component';
+import { AnimaisAdocao, KdAtivo } from './../../../../Models/AnimaisAdocao';
 import { Component, OnInit, Inject } from '@angular/core';
 import { AdocaoService } from 'src/app/adocao.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PopupDetalhesComponent } from './popup-detalhes/popup-detalhes.component';
 import { AdotanteDTO, KdEstado } from 'src/Models/AdotanteDTO';
+import { element } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-popup-interessados',
@@ -14,13 +16,16 @@ import { AdotanteDTO, KdEstado } from 'src/Models/AdotanteDTO';
 export class PopupInteressadosComponent implements OnInit {
   private animal: AnimaisAdocao;
   adotantes: AdotanteDTO[];
-  KdEstado: KdEstado;
+  kdEstado: KdEstado;
+  execSpinner = false;
+  private KdAtivo = KdAtivo;
+  private ativa = true;
 
   constructor(
     private adocaoService: AdocaoService,
     public dialogRef: MatDialogRef<PopupInteressadosComponent>,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: AnimaisAdocao,
     public toastr: ToastrManager) { }
 
   ngOnInit() {
@@ -52,38 +57,112 @@ export class PopupInteressadosComponent implements OnInit {
 
   detalhes(adotante: AdotanteDTO): void {
     const dialogRef = this.dialog.open(PopupDetalhesComponent, {
-      width: 'auto',
-      height: 'auto',
+      width: '370px',
+      height: '600px',
       data: adotante
     });
   }
 
   confirmarAdocao(adotante: AdotanteDTO): void {
+    this.execSpinner = true;
     this.adocaoService.confirmarAdocao(adotante)
       .subscribe(
-        data => { this.toastr.successToastr('Adoção confirmada com sucesso!'); },
+        data => {
+          this.toastr.successToastr('Adoção confirmada com sucesso!');
+          this.execSpinner = false;
+          this.getAdotantes();
+          this.desativar();
+        },
         error => {
           if (error.error.message) {
             this.toastr.errorToastr(error.error.message);
           } else {
             this.toastr.errorToastr(error.message);
           }
+          this.execSpinner = false;
         }
       );
+    this.execSpinner = false;
   }
 
   cancelar(adotante: AdotanteDTO): void {
+    this.execSpinner = true;
     this.adocaoService.cancelarSolicitacao(adotante)
-    .subscribe(
-      data => { this.toastr.successToastr('Adoção cancelada com sucesso!'); },
-      error => {
-        if (error.error.message) {
-          this.toastr.errorToastr(error.error.message);
-        } else {
-          this.toastr.errorToastr(error.message);
+      .subscribe(
+        data => {
+          this.toastr.successToastr('Adoção cancelada com sucesso!');
+          this.execSpinner = false;
+          this.getAdotantes();
+          this.ativar();
+        },
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+          this.execSpinner = false;
         }
-      }
-    );
+      );
+    this.execSpinner = false;
   }
 
+  desativar(): void {
+    if (this.animal.ativo === this.KdAtivo.Sim) {
+      this.execSpinner = true;
+      this.animal.ativo = this.KdAtivo.Não;
+      this.adocaoService.atualizarAnimal(this.animal).
+        subscribe(
+          data => {
+            this.toastr.successToastr('Animal removido da lista de adoção com sucesso!');
+            this.getAdotantes();
+            this.execSpinner = false;
+          },
+          error => {
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
+            this.animal.ativo = this.KdAtivo.Sim;
+            this.execSpinner = false;
+          }
+        );
+    }
+  }
+
+  ativar(): void {
+    if (this.animal.ativo === this.KdAtivo.Não) {
+      this.animal.ativo = this.KdAtivo.Sim;
+      this.adotantes.forEach(this.validarAnimalAdotado);
+      if (this.ativa) {
+        this.execSpinner = true;
+        this.adocaoService.atualizarAnimal(this.animal).
+          subscribe(
+            data => {
+              this.toastr.successToastr('Animal adicionado na lista de adoção com sucesso!');
+              this.getAdotantes();
+              this.execSpinner = false;
+            },
+            error => {
+              if (error.error.message) {
+                this.toastr.errorToastr(error.error.message);
+              } else {
+                this.toastr.errorToastr(error.message);
+              }
+              this.animal.ativo = this.KdAtivo.Não;
+              this.execSpinner = false;
+            }
+          );
+      } else {
+        this.animal.ativo = this.KdAtivo.Não;
+      }
+    }
+  }
+
+  private validarAnimalAdotado(adotante: AdotanteDTO): void {
+    if (adotante.estado === 1) {
+      this.ativa = false;
+    }
+  }
 }

@@ -18,7 +18,8 @@ export class PopUpDetalhes implements OnInit {
 	public KdAdulto = KdAdulto;
 	public KdSexo = KdSexo;
 
-	constructor(private adocaoService: AdocaoService,
+	constructor(
+		private adocaoService: AdocaoService,
 		private toastr: ToastrManager,
 		public dialogRef: MatDialogRef<PopUpDetalhes>,
 		@Inject(MAT_DIALOG_DATA) public data: AnimaisAdocao) { }
