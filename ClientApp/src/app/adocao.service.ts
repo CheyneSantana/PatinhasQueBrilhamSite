@@ -69,4 +69,8 @@ export class AdocaoService {
   cancelarSolicitacao(adotante: AdotanteDTO) {
     return this.http.put(this.baseUrl + 'CancelarSolicitacao/', adotante);
   }
+
+  inserirAnimalAdocao(animal: AnimaisAdocao) {
+    return this.http.post(this.baseUrl + 'InserirAnimalAdocao', animal);
+  }
 }

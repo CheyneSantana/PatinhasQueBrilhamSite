@@ -7,6 +7,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { AdocaoService } from './../../adocao.service';
 import { AnimaisAdocao, KdAtivo } from 'src/Models/AnimaisAdocao';
 import { Component, OnInit } from '@angular/core';
+import { PopupInserirAnimalComponent } from './popup-inserir-animal/popup-inserir-animal.component';
 
 @Component({
   selector: 'app-gerenciar-adocao',
@@ -41,7 +42,7 @@ export class GerenciarAdocaoComponent implements OnInit {
     this.animais = animais;
   }
 
-  public pesquisar(): void {
+  pesquisar(): void {
     this.adocaoService.getNomeAnimal(this.nomeAnimal)
       .subscribe(
         data => { this.returnGetAnimais(data); },
@@ -60,7 +61,7 @@ export class GerenciarAdocaoComponent implements OnInit {
     this.getAnimaisAdocao();
   }
 
-  public openInteressados(animal: AnimaisAdocao): void {
+  openInteressados(animal: AnimaisAdocao): void {
     const dialogRef = this.dialog.open(PopupInteressadosComponent, {
       width: '370px',
       height: '600px',
@@ -68,7 +69,7 @@ export class GerenciarAdocaoComponent implements OnInit {
     });
   }
 
-  public openEditarAnimal(animal: AnimaisAdocao): void {
+  openEditarAnimal(animal: AnimaisAdocao): void {
     const dialogRef = this.dialog.open(PopupEditarAnimalComponent, {
       width: '370px',
       height: '600px',
@@ -77,7 +78,7 @@ export class GerenciarAdocaoComponent implements OnInit {
     this.atualizarPagina();
   }
 
-  public excluir(animal: AnimaisAdocao): void {
+  excluir(animal: AnimaisAdocao): void {
     const dialogRef = this.dialog.open(PopupExcluirAnimalComponent, {
       width: 'auto',
       height: 'auto',
@@ -91,7 +92,7 @@ export class GerenciarAdocaoComponent implements OnInit {
     this.getAnimaisAdocao();
   }
 
-  public desativar(animal: AnimaisAdocao): void {
+  desativar(animal: AnimaisAdocao): void {
     this.patinhasService.executeBar = true;
     animal.ativo = this.KdAtivo.Não;
     this.adocaoService.atualizarAnimal(animal).
@@ -113,7 +114,7 @@ export class GerenciarAdocaoComponent implements OnInit {
       );
   }
 
-  public ativar(animal: AnimaisAdocao): void {
+  ativar(animal: AnimaisAdocao): void {
     this.patinhasService.executeBar = true;
     animal.ativo = this.KdAtivo.Sim;
     this.adocaoService.atualizarAnimal(animal).
@@ -133,5 +134,12 @@ export class GerenciarAdocaoComponent implements OnInit {
           this.patinhasService.executeBar = false;
         }
       );
+  }
+
+  inserirAnimal() {
+    const dialogRef = this.dialog.open(PopupInserirAnimalComponent, {
+      width: '370px',
+      height: '600px'
+    });
   }
 }

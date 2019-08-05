@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
@@ -44,7 +45,7 @@ import { PopupInteressadosComponent } from './administracao/gerenciar-adocao/pop
 import { PopupEditarAnimalComponent } from './administracao/gerenciar-adocao/popup-editar-animal/popup-editar-animal.component';
 import { PopupExcluirAnimalComponent } from './administracao/gerenciar-adocao/popup-excluir-animal/popup-excluir-animal.component';
 import { PopupDetalhesComponent } from './administracao/gerenciar-adocao/popup-interessados/popup-detalhes/popup-detalhes.component';
-import { MatSelectModule } from '@angular/material/select';
+import { PopupInserirAnimalComponent } from './administracao/gerenciar-adocao/popup-inserir-animal/popup-inserir-animal.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MatSelectModule } from '@angular/material/select';
     PopupInteressadosComponent,
     PopupEditarAnimalComponent,
     PopupExcluirAnimalComponent,
-    PopupDetalhesComponent
+    PopupDetalhesComponent,
+    PopupInserirAnimalComponent
   ],
   imports: [
     HttpClientModule,
