@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <button mat-button (click)="fechar()">Fechar</button>
-  </div>
-  <div class="row">
     <mat-progress-bar color="primary" *ngIf="execSpinner"></mat-progress-bar>
   </div>
   <div class="row">
+    <button mat-button (click)="fechar()">Fechar</button>
+  </div>
+  <div class="row">
     <mat-list *ngFor="let adotante of adotantes">
-      <mat-list-item >
+      <mat-list-item>
         <h2 matLine>{{adotante.nome}}</h2>
         <p matLine *ngIf="adotante.estado === 0">Estado solicitação: Enviado</p>
         <p matLine *ngIf="adotante.estado === 1">Estado solicitação: Finalizado</p>

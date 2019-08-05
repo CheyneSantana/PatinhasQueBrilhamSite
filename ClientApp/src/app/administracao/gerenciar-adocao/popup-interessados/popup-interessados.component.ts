@@ -71,7 +71,6 @@ export class PopupInteressadosComponent implements OnInit {
           this.toastr.successToastr('Adoção confirmada com sucesso!');
           this.execSpinner = false;
           this.getAdotantes();
-          this.desativar();
         },
         error => {
           if (error.error.message) {
@@ -93,7 +92,6 @@ export class PopupInteressadosComponent implements OnInit {
           this.toastr.successToastr('Adoção cancelada com sucesso!');
           this.execSpinner = false;
           this.getAdotantes();
-          this.ativar();
         },
         error => {
           if (error.error.message) {
@@ -105,64 +103,5 @@ export class PopupInteressadosComponent implements OnInit {
         }
       );
     this.execSpinner = false;
-  }
-
-  desativar(): void {
-    if (this.animal.ativo === this.KdAtivo.Sim) {
-      this.execSpinner = true;
-      this.animal.ativo = this.KdAtivo.Não;
-      this.adocaoService.atualizarAnimal(this.animal).
-        subscribe(
-          data => {
-            this.toastr.successToastr('Animal removido da lista de adoção com sucesso!');
-            this.getAdotantes();
-            this.execSpinner = false;
-          },
-          error => {
-            if (error.error.message) {
-              this.toastr.errorToastr(error.error.message);
-            } else {
-              this.toastr.errorToastr(error.message);
-            }
-            this.animal.ativo = this.KdAtivo.Sim;
-            this.execSpinner = false;
-          }
-        );
-    }
-  }
-
-  ativar(): void {
-    if (this.animal.ativo === this.KdAtivo.Não) {
-      this.animal.ativo = this.KdAtivo.Sim;
-      this.adotantes.forEach(this.validarAnimalAdotado);
-      if (this.ativa) {
-        this.execSpinner = true;
-        this.adocaoService.atualizarAnimal(this.animal).
-          subscribe(
-            data => {
-              this.toastr.successToastr('Animal adicionado na lista de adoção com sucesso!');
-              this.getAdotantes();
-              this.execSpinner = false;
-            },
-            error => {
-              if (error.error.message) {
-                this.toastr.errorToastr(error.error.message);
-              } else {
-                this.toastr.errorToastr(error.message);
-              }
-              this.animal.ativo = this.KdAtivo.Não;
-              this.execSpinner = false;
-            }
-          );
-      } else {
-        this.animal.ativo = this.KdAtivo.Não;
-      }
-    }
-  }
-
-  private validarAnimalAdotado(adotante: AdotanteDTO): void {
-    if (adotante.estado === 1) {
-      this.ativa = false;
-    }
   }
 }
