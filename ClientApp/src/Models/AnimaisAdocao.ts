@@ -2,7 +2,7 @@ export class AnimaisAdocao {
   animaisAdocaoId: number;
   nomeAntigo: string;
   nomeAtual: string;
-  especie: string;
+  especie: number;
   sexo: number;
   idade: number;
   adulto: number;

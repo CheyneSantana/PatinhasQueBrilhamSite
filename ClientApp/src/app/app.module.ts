@@ -44,6 +44,7 @@ import { PopupInteressadosComponent } from './administracao/gerenciar-adocao/pop
 import { PopupEditarAnimalComponent } from './administracao/gerenciar-adocao/popup-editar-animal/popup-editar-animal.component';
 import { PopupExcluirAnimalComponent } from './administracao/gerenciar-adocao/popup-excluir-animal/popup-excluir-animal.component';
 import { PopupDetalhesComponent } from './administracao/gerenciar-adocao/popup-interessados/popup-detalhes/popup-detalhes.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { PopupDetalhesComponent } from './administracao/gerenciar-adocao/popup-i
     MatDialogModule,
     MatProgressBarModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   entryComponents: [
     AdocaoComponent,

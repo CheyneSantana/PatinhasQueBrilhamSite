@@ -1,3 +1,113 @@
-<p>
-  popup-editar-animal works!
-</p>
+<div class="container">
+  <div class="row">
+    <mat-progress-bar color="primary" *ngIf="execbar"></mat-progress-bar>
+  </div>
+  <div class="row">
+    <button mat-stroked-button (click)="fechar()">Fechar</button>
+  </div>
+  <div class="row">
+    <mat-list>
+      <mat-list-item>
+        <mat-form-field matLine>
+          <input matInput placeholder="Nome Antigo" [(ngModel)]="nomeAntigo" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <input matLine matInput placeholder="Nome Atual" [(ngModel)]="nomeAtual" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <input matLine matInput placeholder="Idade" [(ngModel)]="idade" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <input matLine matInput placeholder="Cor da Pelagem" [(ngModel)]="corPelagem" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <input matLine matInput placeholder="Raça" [(ngModel)]="raca" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <input matLine matInput placeholder="Microship" [(ngModel)]="microship" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <input matLine matInput placeholder="RGA" [(ngModel)]="rga" />
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Filhote ou Adulto?</mat-label>
+          <mat-select [(ngModel)]="adulto">
+            <mat-option *ngFor="let adulto of adultos" [value]="adulto.value">
+              {{adulto.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Selecione o sexo</mat-label>
+          <mat-select [(ngModel)]="sexo">
+            <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">
+              {{sexo.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Selecione a espécie</mat-label>
+          <mat-select [(ngModel)]="especie">
+            <mat-option *ngFor="let especie of especies" [value]="especie.value">
+              {{especie.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Selecione o porte</mat-label>
+          <mat-select [(ngModel)]="porte">
+            <mat-option *ngFor="let porte of portes" [value]="porte.value">
+              {{porte.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Castrado?</mat-label>
+          <mat-select [(ngModel)]="castrado">
+            <mat-option *ngFor="let logical of logicals" [value]="logical.value">
+              {{logical.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Vermifugado?</mat-label>
+          <mat-select [(ngModel)]="vermifugado">
+            <mat-option *ngFor="let logical of logicals" [value]="logical.value">
+              {{logical.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Raiva?</mat-label>
+          <mat-select [(ngModel)]="raiva">
+            <mat-option *ngFor="let logical of logicals" [value]="logical.value">
+              {{logical.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>V10?</mat-label>
+          <mat-select [(ngModel)]="v10">
+            <mat-option *ngFor="let logical of logicals" [value]="logical.value">
+              {{logical.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field matLine>
+          <mat-label>Quadrupla?</mat-label>
+          <mat-select [(ngModel)]="quadrupla">
+            <mat-option *ngFor="let logical of logicals" [value]="logical.value">
+              {{logical.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      <mat-form-field matLine>
+        <input matLine matInput placeholder="Dose Quadrupla" [(ngModel)]="dose" *ngIf="quadrupla === 1" />
+      </mat-form-field>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="row">
+    <button mat-stroked-button color="primary" (click)="salvar()">Salvar</button>
+  </div>
+</div>
