@@ -129,5 +129,4 @@ export class PopupEditarAnimalComponent implements OnInit {
     this.quadrupla = this.animal.quadrupla;
     this.dose = this.animal.dose;
   }
-
 }

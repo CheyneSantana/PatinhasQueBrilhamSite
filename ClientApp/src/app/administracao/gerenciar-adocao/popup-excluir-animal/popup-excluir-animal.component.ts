@@ -36,6 +36,7 @@ export class PopupExcluirAnimalComponent implements OnInit {
           } else {
             this.toastr.errorToastr(error.message);
           }
+          this.fechar();
         }
       );
   }

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FormularioDTO } from 'src/Models/FormularioDTO';
+import { FileItem } from 'ng2-file-upload';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,9 @@ export class AdocaoService {
 
   inserirAnimalAdocao(animal: AnimaisAdocao) {
     return this.http.post(this.baseUrl + 'InserirAnimalAdocao', animal);
+  }
+
+  uploadImagem(formData: FormData) {
+    return this.http.post(this.baseUrl + 'UploadImagem', formData, { reportProgress: true, observe: 'events' });
   }
 }

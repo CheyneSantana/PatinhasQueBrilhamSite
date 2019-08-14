@@ -12,22 +12,22 @@
           <input matInput placeholder="Nome Antigo" [(ngModel)]="nomeAntigo" />
         </mat-form-field>
         <mat-form-field matLine>
-          <input matLine matInput placeholder="Nome Atual" [(ngModel)]="nomeAtual" />
+          <input matInput placeholder="Nome Atual" [(ngModel)]="nomeAtual" />
         </mat-form-field>
         <mat-form-field matLine>
-          <input matLine matInput placeholder="Idade" [(ngModel)]="idade" />
+          <input matInput placeholder="Idade" [(ngModel)]="idade" />
         </mat-form-field>
         <mat-form-field matLine>
-          <input matLine matInput placeholder="Cor da Pelagem" [(ngModel)]="corPelagem" />
+          <input matInput placeholder="Cor da Pelagem" [(ngModel)]="corPelagem" />
         </mat-form-field>
         <mat-form-field matLine>
-          <input matLine matInput placeholder="Raça" [(ngModel)]="raca" />
+          <input matInput placeholder="Raça" [(ngModel)]="raca" />
         </mat-form-field>
         <mat-form-field matLine>
-          <input matLine matInput placeholder="Microship" [(ngModel)]="microship" />
+          <input matInput placeholder="Microship" [(ngModel)]="microship" />
         </mat-form-field>
         <mat-form-field matLine>
-          <input matLine matInput placeholder="RGA" [(ngModel)]="rga" />
+          <input matInput placeholder="RGA" [(ngModel)]="rga" />
         </mat-form-field>
         <mat-form-field matLine>
           <mat-label>Filhote ou Adulto?</mat-label>
@@ -101,9 +101,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-      <mat-form-field matLine>
-        <input matLine matInput placeholder="Dose Quadrupla" [(ngModel)]="dose" *ngIf="quadrupla === 1" />
-      </mat-form-field>
+        <mat-form-field matLine *ngIf="quadrupla === 1">
+          <input matInput placeholder="Dose Quadrupla" [(ngModel)]="dose" />
+        </mat-form-field>
       </mat-list-item>
     </mat-list>
   </div>
