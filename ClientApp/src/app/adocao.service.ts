@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FormularioDTO } from 'src/Models/FormularioDTO';
-import { FileItem } from 'ng2-file-upload';
 
 @Injectable({
   providedIn: 'root'
