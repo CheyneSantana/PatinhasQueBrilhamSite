@@ -67,6 +67,10 @@ export class GerenciarAdocaoComponent implements OnInit {
       height: '600px',
       data: animal
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.atualizarPagina();
+    });
   }
 
   openEditarAnimal(animal: AnimaisAdocao): void {
@@ -75,7 +79,10 @@ export class GerenciarAdocaoComponent implements OnInit {
       height: '600px',
       data: animal
     });
-    this.atualizarPagina();
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.atualizarPagina();
+    });
   }
 
   excluir(animal: AnimaisAdocao): void {
@@ -84,7 +91,10 @@ export class GerenciarAdocaoComponent implements OnInit {
       height: 'auto',
       data: animal
     });
-    this.atualizarPagina();
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.atualizarPagina();
+    });
   }
 
   private atualizarPagina(): void {
@@ -140,6 +150,10 @@ export class GerenciarAdocaoComponent implements OnInit {
     const dialogRef = this.dialog.open(PopupInserirAnimalComponent, {
       width: '370px',
       height: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.atualizarPagina();
     });
   }
 }

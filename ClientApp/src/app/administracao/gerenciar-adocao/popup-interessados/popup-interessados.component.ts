@@ -104,4 +104,40 @@ export class PopupInteressadosComponent implements OnInit {
       );
     this.execSpinner = false;
   }
+
+  desativar(animal: AnimaisAdocao): void {
+    animal.ativo = this.KdAtivo.Não;
+    this.adocaoService.atualizarAnimal(animal).
+      subscribe(
+        data => {
+          this.toastr.successToastr('Animal removido da lista de adoção com sucesso!');
+        },
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+          animal.ativo = this.KdAtivo.Sim;
+        }
+      );
+  }
+
+  ativar(animal: AnimaisAdocao): void {
+    animal.ativo = this.KdAtivo.Sim;
+    this.adocaoService.atualizarAnimal(animal).
+      subscribe(
+        data => {
+          this.toastr.successToastr('Animal adicionado na lista de adoção com sucesso!');
+        },
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+          animal.ativo = this.KdAtivo.Não;
+        }
+      );
+  }
 }
