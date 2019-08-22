@@ -15,6 +15,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
   public baseUrl = 'https://localhost:5001/api';
   // public baseUrl = 'http://192.168.1.2:5000/api';
+  // public baseUrl = 'http://api.ongpatinhasquebrilham.com.br/api';
   public logged = false;
   public isAdmin = false;
 
