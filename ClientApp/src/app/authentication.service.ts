@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  // public baseUrl = 'http://api.ongpatinhasquebrilham.com.br/api';
-  public baseUrl = 'http:/localhost:5000/api';
+  public baseUrl = 'http://vikingssistemas-001-site1.atempurl.com/api';
+  // public baseUrl = 'http:/localhost:5000/api';
   public logged = false;
   public isAdmin = false;
 

@@ -42,7 +42,14 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => { this.toastr.successToastr('Acessado com sucesso!'); this.closeDialog(); this.patinhas.executeBar = false; },
-          error => { this.toastr.errorToastr(error.error.message); this.loading = false; this.patinhas.executeBar = false; }
+          error => {
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
+            this.patinhas.executeBar = false;
+          }
         );
     }
     this.patinhas.executeBar = false;
@@ -78,15 +85,21 @@ export class LoginComponent implements OnInit {
   public resetarSenha(): void {
     this.patinhas.executeBar = true;
     if (!this.email) {
-      this.toastr.errorToastr("Por favor insira seu email");
+      this.toastr.errorToastr('Por favor insira seu email');
       this.patinhas.executeBar = false;
-    }
-    else {
+    } else {
       this.montarUser();
       this.patinhas.resetarSenha(this.user)
         .subscribe(
           data => { this.toastr.successToastr('Uma nova senha foi enviada para seu email'); this.patinhas.executeBar = false;},
-          error => { this.toastr.errorToastr(error.error.message); this.patinhas.executeBar = false;}
+          error => {
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
+            this.patinhas.executeBar = false;
+          }
         );
     }
   }

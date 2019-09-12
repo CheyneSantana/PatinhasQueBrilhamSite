@@ -26,11 +26,12 @@ export class RegisterComponent implements OnInit {
   public telCel: string;
   public user: User;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private patinhas: PatinhasService,
     private userService: UserService,
     private toastr: ToastrManager,
-    public dialogRef: MatDialogRef<RegisterComponent>,
+    public dialogRef: MatDialogRef<RegisterComponent>
   ) { }
 
   ngOnInit() {
@@ -52,7 +53,11 @@ export class RegisterComponent implements OnInit {
             this.patinhas.executeBar = false;
           },
           error => {
-            this.toastr.errorToastr(error.error.message);
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
             this.loading = false;
             this.patinhas.executeBar = false;
           });
@@ -119,7 +124,7 @@ export class RegisterComponent implements OnInit {
       password: this.senha,
       token: '',
       isAdmin: false
-    }
+    };
   }
 
   public closeDialog(): void {

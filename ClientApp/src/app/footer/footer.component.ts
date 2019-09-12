@@ -22,7 +22,13 @@ export class FooterComponent implements OnInit {
     this.footerService.getApoios()
       .subscribe(
         data => { this.retornoGetApoios(data); },
-        error => { this.toastr.errorToastr(error.error.message); }
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+        }
       );
   }
 

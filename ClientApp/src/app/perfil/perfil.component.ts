@@ -62,10 +62,15 @@ export class PerfilComponent implements OnInit {
             this.patinhas.executeBar = false;
           },
           error => {
-            this.toastr.errorToastr(error.error.message);
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
             this.loading = false;
             this.patinhas.executeBar = false;
-          });
+          }
+        );
     }
     this.patinhas.executeBar = false;
   }
@@ -110,7 +115,14 @@ export class PerfilComponent implements OnInit {
         this.userService.validarSenhaAntiga(user)
           .subscribe(
             data => { },
-            error => { this.toastr.errorToastr(error.error.message); hasErro = true; }
+            error => {
+              if (error.error.message) {
+                this.toastr.errorToastr(error.error.message);
+              } else {
+                this.toastr.errorToastr(error.message);
+              }
+              hasErro = true;
+            }
           );
       }
 
@@ -137,7 +149,7 @@ export class PerfilComponent implements OnInit {
       password: this.senhaNova,
       isAdmin: this.patinhas.currentUserValue().isAdmin,
       token: this.token
-    }
+    };
   }
 
   private makeTela(): void {

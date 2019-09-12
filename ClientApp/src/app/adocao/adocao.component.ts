@@ -35,7 +35,13 @@ export class AdocaoComponent implements OnInit {
     this.service.getAnimais()
       .subscribe(
         data => { this.retornoGetAnimais(data); },
-        error => { this.toastr.errorToastr(error.error.message, 'Erro: '); }
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+        }
       );
   }
 
