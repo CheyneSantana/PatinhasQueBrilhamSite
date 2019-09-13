@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
               this.toastr.errorToastr(error.message);
             }
             this.patinhas.executeBar = false;
+            this.loading = false;
           }
         );
     }
@@ -88,8 +89,7 @@ export class LoginComponent implements OnInit {
       this.toastr.errorToastr('Por favor insira seu email');
       this.patinhas.executeBar = false;
     } else {
-      this.montarUser();
-      this.patinhas.resetarSenha(this.user)
+      this.patinhas.resetarSenha(this.email)
         .subscribe(
           data => { this.toastr.successToastr('Uma nova senha foi enviada para seu email'); this.patinhas.executeBar = false;},
           error => {

@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  public baseUrl = 'http://vikingssistemas-001-site1.atempurl.com/api';
-  // public baseUrl = 'http:/localhost:5000/api';
+  // public baseUrl = 'http://vikingssistemas-001-site1.atempurl.com/api';
+  public baseUrl = 'https://localhost:5001/api';
   public logged = false;
   public isAdmin = false;
 
@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(this.baseUrl + '/Users/authenticate', { email, password })
+    return this.http.post<any>(this.baseUrl + '/Users/Authenticate', { email, password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -49,7 +49,7 @@ export class AuthenticationService {
     this.isAdmin = false;
   }
 
-  resetarSenha(user: User) {
-    return this.http.put(this.baseUrl + '/Users/ResetarSenha', user);
+  resetarSenha(email: string) {
+    return this.http.put(this.baseUrl + '/Users/ResetarSenha', email);
   }
 }

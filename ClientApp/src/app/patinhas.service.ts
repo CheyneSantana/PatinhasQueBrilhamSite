@@ -18,8 +18,8 @@ export class PatinhasService {
     return this.authenticationService.login(email, senha);
   }
 
-  public resetarSenha(user: User) {
-    return this.authenticationService.resetarSenha(user);
+  public resetarSenha(email: string) {
+    return this.authenticationService.resetarSenha(email);
   }
 
   public currentUserValue(): User {
