@@ -73,7 +73,11 @@ export class PopUpAdocao implements OnInit {
             this.execSpinner = false;
           },
           error => {
-            this.toastr.errorToastr(error.error.message, 'Erro: ');
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
             this.execSpinner = false;
           }
         );
@@ -164,7 +168,13 @@ export class PopUpAdocao implements OnInit {
             this.retornoBuscarCep(data);
             this.patinhas.executeBar = false;
           },
-          error => { this.toastr.errorToastr(error.error.message); }
+          error => {
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
+          }
         );
     } else {
       this.toastr.errorToastr('Por favor insira o CEP');

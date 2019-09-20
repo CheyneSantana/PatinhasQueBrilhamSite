@@ -25,7 +25,14 @@ export class LojaComponent implements OnInit {
     this.lojaService.getProdutos()
       .subscribe(
         data => { this.retornoGetProdutos(data); this.patinhas.executeBar = false;},
-        error => { this.toastr.errorToastr(error.error.message); this.patinhas.executeBar = false;}
+        error => {
+          if (error.error.message) {
+            this.toastr.errorToastr(error.error.message);
+          } else {
+            this.toastr.errorToastr(error.message);
+          }
+          this.patinhas.executeBar = false;
+        }
       );
   }
 

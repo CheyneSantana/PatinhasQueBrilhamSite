@@ -78,7 +78,11 @@ export class ReservaComponent implements OnInit {
             this.executeBar = false;
           },
           error => {
-            this.toastr.errorToastr(error.error.message, 'Erro: ');
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
             this.executeBar = false;
           }
         );
@@ -92,17 +96,17 @@ export class ReservaComponent implements OnInit {
   }
 
   public limparCampos() {
-    this.nomeDono = "";
-    this.nomePet = "";
-    this.residencial = "";
-    this.celular = "";
-    this.email = "";
+    this.nomeDono = '';
+    this.nomePet = '';
+    this.residencial = '';
+    this.celular = '';
+    this.email = '';
     this.fromDate = new Date(null);
     this.toDate = new Date(null);
-    this.raca = "";
-    this.comentario = "";
-    this.tipoPet = "";
-    this.portePet = "";
+    this.raca = '';
+    this.comentario = '';
+    this.tipoPet = '';
+    this.portePet = '';
     this.idadePet = 0;
   }
 
@@ -198,7 +202,11 @@ export class ReservaComponent implements OnInit {
             this.executeBar = false;
           },
           error => {
-            this.toastr.errorToastr(error.error.message, 'Erro: ');
+            if (error.error.message) {
+              this.toastr.errorToastr(error.error.message);
+            } else {
+              this.toastr.errorToastr(error.message);
+            }
             this.executeBar = false;
           }
         );
@@ -238,10 +246,23 @@ export class ReservaComponent implements OnInit {
                 this.limparCampos();
                 this.executeBar = false;
               },
-              error => { this.toastr.errorToastr(error, 'Erro: '); this.executeBar = false; }
+              error => {
+                if (error.error.message) {
+                  this.toastr.errorToastr(error.error.message);
+                } else {
+                  this.toastr.errorToastr(error.message);
+                }
+                this.executeBar = false;
+            }
             );
         },
-        error => { this.toastr.errorToastr(error, 'Erro: '); }
+        erro => {
+          if (erro.error.message) {
+            this.toastr.errorToastr(erro.error.message);
+          } else {
+            this.toastr.errorToastr(erro.message);
+          }
+        }
       );
     }
     this.executeBar = false;
@@ -253,10 +274,16 @@ export class ReservaComponent implements OnInit {
       .subscribe(
         data => {
           this.toastr.successToastr('Reserva cancelada com sucesso');
-          this.limparCampos(); 
+          this.limparCampos();
           this.isEdit = false;
         },
-        error => { this.toastr.errorToastr(error.error.message); }
+        erro => {
+          if (erro.error.message) {
+            this.toastr.errorToastr(erro.error.message);
+          } else {
+            this.toastr.errorToastr(erro.message);
+          }
+        }
       );
   }
 }
